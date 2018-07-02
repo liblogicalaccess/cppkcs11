@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include "cppkcs11/cppkcs_fwd.hpp"
+#include <string>
 
 namespace cppkcs
 {

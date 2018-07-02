@@ -19,7 +19,10 @@ function(create_and_add_test TEST_NAME)
 endfunction()
 
 create_and_add_test(test_session)
-create_and_add_test(test_general)
+
+# test_general actually tests against some hardcoded values
+# that are present when connecting to an Atos NetHSM
+#create_and_add_test(test_general)
 create_and_add_test(test_object_service)
 create_and_add_test(test_key_service)
 create_and_add_test(test_crypto_service)

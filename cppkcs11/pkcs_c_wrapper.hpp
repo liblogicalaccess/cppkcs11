@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include "cppkcs11/native_pkcs.hpp"
+#include <string>
 
 namespace cppkcs
 {

@@ -1,7 +1,7 @@
+#include "cppkcs11/cppkcs11.hpp"
+#include "gtest/gtest.h"
 #include <algorithm>
 #include <memory>
-#include "gtest/gtest.h"
-#include "cppkcs11/cppkcs11.hpp"
 
 /**
  * Problem: Those tests relies on the current setup of test HSM
@@ -58,7 +58,8 @@ TEST(General, test_secure_string)
 {
     uint8_t *ptr;
     {
-        cppkcs::SecureString secure("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        cppkcs::SecureString
+secure("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         ptr = secure.data();
         for (int i = 0; i < 6; ++i)
         {
@@ -141,7 +142,8 @@ TEST_F(GeneralTest, token_info)
         auto info = cppkcs::get_token_info(i);
 
         // We need to retrieve the label.
-        // Somehow the `label` is not '\0' terminated, so we have to limit to 32, then
+        // Somehow the `label` is not '\0' terminated, so we have to limit to 32,
+        // then
         // strip blank.
         auto label = std::string((const char *)info.label, (const char *)info.label + 32);
         label.erase(std::remove_if(label.begin(), label.end(),

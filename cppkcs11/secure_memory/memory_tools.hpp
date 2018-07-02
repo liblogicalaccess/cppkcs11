@@ -1,10 +1,10 @@
 #pragma once
 
 #include <cassert>
-#include <vector>
-#include <string>
-#include <memory>
 #include <cstddef>
+#include <memory>
+#include <string>
+#include <vector>
 
 namespace cppkcs
 {
@@ -56,10 +56,12 @@ size_t get_page_size();
  * Implementation notes:
  *   + We have to be certain that the address range we lock are full pages,
  *   that is we have to prevent any other allocation for sharing a page with
- *   the secured-memory provided by the SecureMemoryLockerBuffer. This is because
+ *   the secured-memory provided by the SecureMemoryLockerBuffer. This is
+ * because
  *   a single call to munlock() will cancel multiple call to mlock(). Therefore,
  *   each SecureMemoryLockerBuffer MUST NOT share pages.
- *   + To do so we request more memory than required, then take a pointer aligned
+ *   + To do so we request more memory than required, then take a pointer
+ * aligned
  *   to the system page size. We then lock the range starting from that pointer
  *   to (pointer + user size + XXX) that end at a page boundary.
  */

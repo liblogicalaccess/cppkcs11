@@ -26,7 +26,6 @@ namespace cppkcs
 // Some PKCS #define converted in strongly typed enums
 // for more type safety.
 
-
 /**
  * Object Type. This is the value for the CKA_CLASS
  * attribute I believe.

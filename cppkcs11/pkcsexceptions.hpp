@@ -1,8 +1,8 @@
 #pragma once
 
-#include <string>
-#include <stdexcept>
 #include "cppkcs11/native_pkcs.hpp"
+#include <stdexcept>
+#include <string>
 
 namespace cppkcs
 {
@@ -42,7 +42,8 @@ class GetInfoException : public PKCSException
  * It is possible that the PKCS error code be SUCCESS even though this
  * exception is thrown.
  *
- * This is because we throw this exception when the size returned for an attribute
+ * This is because we throw this exception when the size returned for an
+ * attribute
  * is -1, indicating an issue.
  */
 class AttributeException : public PKCSException

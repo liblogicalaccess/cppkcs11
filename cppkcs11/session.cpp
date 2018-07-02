@@ -2,13 +2,13 @@
 // Created by xaqq on 6/4/18.
 //
 
-#include <cassert>
 #include "cppkcs11/session.hpp"
 #include "cppkcs11/cppkcs11.hpp"
 #include "cppkcs11/object.hpp"
+#include "cppkcs11/pkcs_c_wrapper.hpp"
 #include "cppkcs11/pkcsexceptions.hpp"
 #include "cppkcs11/secure_memory/secure_string.hpp"
-#include "cppkcs11/pkcs_c_wrapper.hpp"
+#include <cassert>
 
 namespace cppkcs
 {

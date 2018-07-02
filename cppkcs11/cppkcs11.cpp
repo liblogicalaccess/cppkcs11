@@ -1,7 +1,7 @@
-#include <type_traits>
 #include "cppkcs11/cppkcs11.hpp"
-#include "pkcsexceptions.hpp"
 #include "pkcs_c_wrapper.hpp"
+#include "pkcsexceptions.hpp"
+#include <type_traits>
 
 namespace cppkcs
 {

@@ -1,7 +1,7 @@
-#include <string>
-#include <stdexcept>
-#include <iostream>
 #include "cppkcs11/pkcs_c_wrapper.hpp"
+#include <iostream>
+#include <stdexcept>
+#include <string>
 
 #ifdef __linux__
 #include <dlfcn.h>
@@ -112,7 +112,6 @@ class PKCSAPI_Impl : public PKCSAPI
 
     std::string shared_object_path_;
 };
-
 
 void PKCSAPI::init_function_pointers(const std::string &pkcs_shared_object_path)
 {

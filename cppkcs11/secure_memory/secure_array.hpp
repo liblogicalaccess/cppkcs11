@@ -1,8 +1,8 @@
 #pragma once
 
-#include <array>
-#include "cppkcs11/secure_memory/secure_string.hpp"
 #include "cppkcs11/secure_memory/memory_tools.hpp"
+#include "cppkcs11/secure_memory/secure_string.hpp"
+#include <array>
 
 namespace cppkcs
 {

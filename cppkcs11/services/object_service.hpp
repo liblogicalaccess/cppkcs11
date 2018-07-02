@@ -1,8 +1,8 @@
 #pragma once
 
-#include <vector>
-#include <cppkcs11/object.hpp>
 #include "cppkcs11/cppkcs_fwd.hpp"
+#include <cppkcs11/object.hpp>
+#include <vector>
 
 namespace cppkcs
 {

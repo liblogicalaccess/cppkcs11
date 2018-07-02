@@ -1,15 +1,15 @@
-#include <iostream>
-#include <array>
-#include <tuple>
-#include <map>
-#include <cppkcs11/services/object_service.hpp>
-#include <cppkcs11/services/key_service.hpp>
-#include <cppkcs11/services/crypto_service.hpp>
-#include "cppkcs11/cppkcs_fwd.hpp"
 #include "cppkcs11/attribute.hpp"
-#include "cppkcs11/secure_memory/secure_string.hpp"
-#include "cppkcs11/pkcsexceptions.hpp"
 #include "cppkcs11/cppkcs11.hpp"
+#include "cppkcs11/cppkcs_fwd.hpp"
+#include "cppkcs11/pkcsexceptions.hpp"
+#include "cppkcs11/secure_memory/secure_string.hpp"
+#include <array>
+#include <cppkcs11/services/crypto_service.hpp>
+#include <cppkcs11/services/key_service.hpp>
+#include <cppkcs11/services/object_service.hpp>
+#include <iostream>
+#include <map>
+#include <tuple>
 
 #define MY_HSM_PIN cppkcs::SecureString("")
 

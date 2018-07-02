@@ -1,11 +1,11 @@
 #pragma once
 
-#include <functional>
-#include <vector>
-#include "cppkcs11/secure_memory/secure_string.hpp"
 #include "cppkcs11/cppkcs_fwd.hpp"
 #include "cppkcs11/native_pkcs.hpp"
+#include "cppkcs11/secure_memory/secure_string.hpp"
 #include "cppkcs11/services/object_service.hpp"
+#include <functional>
+#include <vector>
 
 namespace cppkcs
 {
@@ -82,7 +82,8 @@ class KeyService
     // Derive_key not implemented due to HSM issues.
     /*
         Object derive_key(const Object &base_key,
-                          const std::vector<std::reference_wrapper<IAttribute>> &attrs);
+                          const std::vector<std::reference_wrapper<IAttribute>>
+       &attrs);
 
         template <typename... Attributes>
         Object derive_key(const Object &base_key, Attributes &&... attrs)

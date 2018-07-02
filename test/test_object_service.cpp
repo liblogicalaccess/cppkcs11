@@ -1,9 +1,9 @@
-#include <algorithm>
-#include "cppkcs11/services/object_service.hpp"
-#include "gtest/gtest.h"
 #include "cppkcs11/cppkcs11.hpp"
 #include "cppkcs11/secure_memory/secure_string.hpp"
+#include "cppkcs11/services/object_service.hpp"
 #include "test_helper.hpp"
+#include "gtest/gtest.h"
+#include <algorithm>
 
 /**
  * Tests in this file kinda assume that other call
@@ -11,7 +11,7 @@
  * to perform testing...
  */
 
-class ObjectServiceTest : public ::testing::Test
+class ObjectServiceTest : public TestHelper
 {
   protected:
     void SetUp() override
@@ -19,9 +19,9 @@ class ObjectServiceTest : public ::testing::Test
         cppkcs::load_pkcs();
         cppkcs::initialize();
 
-        auto session = cppkcs::open_session(NETHSM_SLOT, CKS_RW_USER_FUNCTIONS);
+        auto session = cppkcs::open_session(get_hsm_slot(), CKS_RW_USER_FUNCTIONS);
         session_     = std::make_unique<cppkcs::Session>(std::move(session));
-        session_->login(HSM_USER_PIN);
+        session_->login(get_hsm_pin());
 
         service_ = std::make_unique<cppkcs::ObjectService>(*session_);
     }
@@ -31,7 +31,8 @@ class ObjectServiceTest : public ::testing::Test
         // We need to null our pointers, otherwise we will finalize() before
         // objects' destruction.
 
-        session_->logout();
+        if (session_)
+            session_->logout();
         service_ = nullptr;
         session_ = nullptr;
         cppkcs::finalize();

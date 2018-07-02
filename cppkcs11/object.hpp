@@ -1,15 +1,15 @@
 #pragma once
 
+#include "cppkcs11/attribute.hpp"
+#include "cppkcs11/cppkcs_fwd.hpp"
+#include "cppkcs11/native_pkcs.hpp"
+#include "cppkcs11/secure_memory/secure_array.hpp"
 #include <array>
-#include <tuple>
-#include <vector>
-#include <iostream>
 #include <cassert>
 #include <cstring>
-#include "cppkcs11/native_pkcs.hpp"
-#include "cppkcs11/cppkcs_fwd.hpp"
-#include "cppkcs11/attribute.hpp"
-#include "cppkcs11/secure_memory/secure_array.hpp"
+#include <iostream>
+#include <tuple>
+#include <vector>
 
 namespace cppkcs
 {

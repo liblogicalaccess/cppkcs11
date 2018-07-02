@@ -1,8 +1,7 @@
-#include <sstream>
-#include <iomanip>
 #include "cppkcs11/pkcsexceptions.hpp"
 #include "cppkcs11.hpp"
-
+#include <iomanip>
+#include <sstream>
 
 namespace
 {
@@ -45,7 +44,6 @@ std::string GetInfoException::build_msg(const std::string &what, CK_SLOT_ID slot
     ss << what << "(SlotID: " << slot_id << ")";
     return ss.str();
 }
-
 
 AttributeException::AttributeException(CK_RV errcode, const std::string &what)
     : PKCSException(errcode, what)

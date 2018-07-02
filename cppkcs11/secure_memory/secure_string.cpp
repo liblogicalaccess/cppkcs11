@@ -1,9 +1,9 @@
+#include "cppkcs11/secure_memory/secure_string.hpp"
+#include "cppkcs11/secure_memory/memory_tools.hpp"
 #include <cstddef>
 #include <cstdint>
-#include <string>
 #include <cstring>
-#include "cppkcs11/secure_memory/memory_tools.hpp"
-#include "cppkcs11/secure_memory/secure_string.hpp"
+#include <string>
 
 namespace cppkcs
 {

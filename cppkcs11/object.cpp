@@ -3,9 +3,9 @@
 //
 
 #include "cppkcs11/object.hpp"
-#include "pkcsexceptions.hpp"
 #include "cppkcs11.hpp"
 #include "cppkcs11/pkcs_c_wrapper.hpp"
+#include "pkcsexceptions.hpp"
 
 namespace cppkcs
 {
@@ -42,7 +42,8 @@ Object::native_get_attributes(std::vector<CK_ATTRIBUTE> attr_templates)
     {
         if (attr.ulValueLen == -1)
         {
-            // Attribute is sensitive or unextractable or maybe it doesnt even exists...
+            // Attribute is sensitive or unextractable or maybe it doesnt even
+            // exists...
             throw AttributeException(ret, "Attribute size is -1");
         }
     }

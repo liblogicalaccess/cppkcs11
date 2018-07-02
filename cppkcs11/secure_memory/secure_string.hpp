@@ -1,10 +1,10 @@
 #pragma once
 
-#include <vector>
-#include <string>
-#include <memory>
 #include "cppkcs11/secure_memory/memory_tools.hpp"
 #include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
 
 namespace cppkcs
 {

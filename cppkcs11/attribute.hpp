@@ -1,12 +1,12 @@
 #pragma once
 
-#include <functional>
-#include <array>
-#include <type_traits>
-#include <cassert>
-#include <vector>
 #include "cppkcs11/native_pkcs.hpp"
 #include "cppkcs11/secure_memory/secure_string.hpp"
+#include <array>
+#include <cassert>
+#include <functional>
+#include <type_traits>
+#include <vector>
 
 namespace cppkcs
 {
@@ -29,13 +29,17 @@ class IAttribute
  *
  * AttributeBase defines some type traits that help
  * define the attribute:
- *   + UnderlyingPKCSAttributeId is the numerical value of the PKCS attributes, such
+ *   + UnderlyingPKCSAttributeId is the numerical value of the PKCS attributes,
+ * such
  *     as CKA_CLASS or CKA_LABEL.
- *   + IsDataFixedLength is a boolean that determines if we expect the attributes
+ *   + IsDataFixedLength is a boolean that determines if we expect the
+ * attributes
  *     to be fixed length or not. For example the attribute value corresponding
- *     to CKA_CLASS is always of type CK_ATTRIBUTE_TYPE, so its data is fixed length.
+ *     to CKA_CLASS is always of type CK_ATTRIBUTE_TYPE, so its data is fixed
+ * length.
  *     This is opposed to CKA_LABEL whose size may vary.
- *   + VariableLengthBufferSize is the sized of the buffer to use (if IsDataFixedLength is
+ *   + VariableLengthBufferSize is the sized of the buffer to use (if
+ * IsDataFixedLength is
  *     false) when we fetch an attribute.
  *
  * @tparam AttributeTypeId
@@ -48,8 +52,10 @@ struct AttributeBase : public IAttribute
         std::integral_constant<CK_ATTRIBUTE_TYPE, AttributeTypeId>;
 
     /**
-     * If this is false, a method assign_from_bytes(uint8_t *, size_t) must be defined.
-     * This method will be used to populate the value of the attribute from raw data.
+     * If this is false, a method assign_from_bytes(uint8_t *, size_t) must be
+     * defined.
+     * This method will be used to populate the value of the attribute from raw
+     * data.
      */
     using IsDataFixedLength = std::integral_constant<bool, ValueFixedLength>;
 
@@ -131,7 +137,8 @@ class Attribute
 };
 
 /**
- * Create CK_ATTRIBUTEs for an arbitrary number of strongly typed attributes into
+ * Create CK_ATTRIBUTEs for an arbitrary number of strongly typed attributes
+ * into
  * an std::array of CK_ATTRIBUTE.
  * Those CK_ATTRIBUTES struct are backed by the strongly typed attributes.
  */
@@ -195,7 +202,6 @@ class ByteVectorAttribute
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
-
 /**
  * Specialization for the CKA_CLASS attribute.
  */
@@ -219,7 +225,6 @@ template <>
 class Attribute<CKA_LOCAL> : public FixedLengthAttribute<CKA_LOCAL, bool>
 {
 };
-
 
 /**
  * Specialization for the CKA_EXTRACTABLE attribute.

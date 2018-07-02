@@ -1,11 +1,11 @@
 #include "cppkcs11/services/crypto_service.hpp"
-#include <cassert>
-#include <cppkcs11/pkcs_c_wrapper.hpp>
-#include "cppkcs11/session.hpp"
 #include "cppkcs11/cppkcs11.hpp"
 #include "cppkcs11/object.hpp"
 #include "cppkcs11/pkcsexceptions.hpp"
 #include "cppkcs11/secure_memory/secure_string.hpp"
+#include "cppkcs11/session.hpp"
+#include <cassert>
+#include <cppkcs11/pkcs_c_wrapper.hpp>
 
 namespace cppkcs
 {
@@ -30,7 +30,8 @@ std::vector<uint8_t> CryptoService::aes_encrypt(const SecureString &data,
 
     CK_ULONG encrypted_data_length = data.size();
     std::vector<uint8_t> encrypted(data.size());
-    // We have to remove constness due to PKCS API. In practice, because data.data() is
+    // We have to remove constness due to PKCS API. In practice, because
+    // data.data() is
     // the input it should be read-only...
     ret =
         PKCSAPI::encrypt_(session_.native_handle(), const_cast<CK_BYTE_PTR>(data.data()),

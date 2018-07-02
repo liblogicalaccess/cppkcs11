@@ -1,12 +1,12 @@
 #pragma once
 
-#include <vector>
-#include <map>
 #include "cppkcs11/native_pkcs.hpp"
-#include "cppkcs11/session.hpp"
 #include "cppkcs11/object.hpp"
 #include "cppkcs11/pkcsexceptions.hpp"
 #include "cppkcs11/secure_memory/secure_string.hpp"
+#include "cppkcs11/session.hpp"
+#include <map>
+#include <vector>
 
 /**
  * C++ wrapping of some PKCS functions.
