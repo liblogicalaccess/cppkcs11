@@ -9,7 +9,7 @@ by [LibLogicalAccess](https://github.com/islog/liblogicalaccess).
 The library lives in the `cppkcs` namespace. Two calls are required
 before starting to use the library. See the minimal example below.
 
-```
+```cpp
 // dlopen() the underlying PKCS11 library.
 cppkcs::load_pkcs("/path/to/underlying/pkcs11/library.so");
 
