@@ -14,7 +14,7 @@ project(atosnethsm)
 
 set(CMAKE_CXX_STANDARD 14)
 if (UNIX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -g -W -Wall -Wno-unused")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -O2 -g -W -Wall -Wno-unused")
 endif ()
 
 if (MSVC)
