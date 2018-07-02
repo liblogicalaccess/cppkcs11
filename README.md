@@ -30,3 +30,8 @@ ks.import_aes_key(key1_value, cppkcs::make_attribute<CKA_TOKEN>(true),
                   cppkcs::make_attribute<CKA_LABEL>("MyAesKey"),
                   cppkcs::make_attribute<CKA_ID>({'1', 't', 'o', '1', '6'}));
 ```
+
+# Notes
+
+For convenience the native PKCS11 headers are provided in the `native_header`
+directory.
