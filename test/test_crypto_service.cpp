@@ -5,7 +5,7 @@
 #include "test_helper.hpp"
 #include "gtest/gtest.h"
 #include <algorithm>
-#include <cppkcs11/services/crypto_service.hpp>
+#include "cppkcs11/services/crypto_service.hpp"
 
 class CryptoServiceTest : public TestHelper
 {

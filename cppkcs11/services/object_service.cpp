@@ -63,13 +63,9 @@ ObjectService::create_object(const std::vector<std::reference_wrapper<IAttribute
     CK_OBJECT_HANDLE object_handle;
 
     auto native_attrs = as_native_attributes_v(attrs);
-    std::cout << "Hello" << std::endl;
-
     ret = PKCSAPI::create_object_(session_.native_handle(), native_attrs.data(),
                                   native_attrs.size(), &object_handle);
-    std::cout << "DEAD ??" << std::endl;
     throw_on_error<AttributeException>(ret, "CreateObject");
-    std::cout << "???" << std::endl;
     return Object(session_, object_handle);
 }
 }

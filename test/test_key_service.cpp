@@ -132,6 +132,42 @@ TEST_F(KeyServiceTest, test_import_export)
     ASSERT_EQ(key_value, key_value_export);
 }
 
+TEST_F(KeyServiceTest, test_duplicate_key_id)
+{
+    using namespace cppkcs;
+    auto key = service_->generate_aes_128_key(make_attribute<CKA_LABEL>("MyAesKey"),
+                                              make_attribute<CKA_TOKEN>(true),
+                                              make_attribute<CKA_ID>({1, 2, 3, 4}));
+
+    auto key2 = service_->generate_aes_128_key(make_attribute<CKA_LABEL>("MyAesKey"),
+                                               make_attribute<CKA_TOKEN>(true),
+                                               make_attribute<CKA_ID>({1, 2, 3, 4}));
+
+    ObjectService os(*session_);
+    auto objects = os.find_objects();
+    ASSERT_EQ(2, objects.size());
+
+    objects = os.find_objects(make_attribute<CKA_ID>({1, 2, 3, 4}));
+    ASSERT_EQ(2, objects.size());
+}
+
+TEST_F(KeyServiceTest, test_generate_and_export)
+{
+    using namespace cppkcs;
+    auto key = service_->generate_aes_128_key(
+        make_attribute<CKA_LABEL>("MyAesKey"), make_attribute<CKA_TOKEN>(true),
+        make_attribute<CKA_EXTRACTABLE>(true), make_attribute<CKA_SENSITIVE>(false),
+        make_attribute<CKA_ID>({1, 2, 3, 4}));
+
+    auto val = key.get_attribute<CKA_VALUE>().data_;
+
+    ObjectService os(*session_);
+    auto objects = os.find_objects();
+    ASSERT_EQ(1, objects.size());
+    ASSERT_EQ(16, objects.at(0).get_attribute<CKA_VALUE>().data_.size());
+    ASSERT_EQ(val, objects.at(0).get_attribute<CKA_VALUE>().data_);
+}
+
 TEST_F(KeyServiceTest, test_derive_key)
 {
     // This crash the Atos HSM....

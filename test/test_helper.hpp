@@ -10,9 +10,11 @@
 //#define HSM_USER_PIN cppkcs::SecureString("qqqq")
 //#define NETHSM_SLOT 1981080426
 
-class TestHelper : public ::testing::Test {
-protected:
-    cppkcs::SecureString get_hsm_pin() {
+class TestHelper : public ::testing::Test
+{
+  protected:
+    cppkcs::SecureString get_hsm_pin()
+    {
         const char *pin = getenv("CPPKCS11_UNITTEST_PIN");
         if (pin == nullptr)
         {
@@ -22,11 +24,13 @@ protected:
         return cppkcs::SecureString(pin);
     }
 
-    size_t get_hsm_slot() {
-        const char * slot = getenv("CPPKCS11_UNITTEST_TOKEN_SLOT");
+    size_t get_hsm_slot()
+    {
+        const char *slot = getenv("CPPKCS11_UNITTEST_TOKEN_SLOT");
         if (slot == nullptr)
         {
-            std::cerr << "No token slot configured in CPPKCS11_UNITTEST_TOKEN_SLOT" << std::endl;
+            std::cerr << "No token slot configured in CPPKCS11_UNITTEST_TOKEN_SLOT"
+                      << std::endl;
             exit(-1);
         }
         return std::stoull(slot);
