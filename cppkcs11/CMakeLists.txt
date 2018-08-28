@@ -25,3 +25,11 @@ target_include_directories(cppkcs11 PUBLIC
 if(UNIX)
     target_link_libraries(cppkcs11 PUBLIC dl)
 endif()
+
+
+# LIB_SUFFIX is a variable configured for Windows build of LibLogicalAccess
+install(FILES ${INCLUDE} DESTINATION include/cppkcs11)
+install(TARGETS cppkcs11 RUNTIME DESTINATION bin/${LIB_SUFFIX} ARCHIVE DESTINATION lib/${LIB_SUFFIX} LIBRARY DESTINATION lib/${LIB_SUFFIX})
+if (MSVC)
+    install(FILES $<TARGET_PDB_FILE:${PROJECT_NAME}> DESTINATION pdb/${LIB_SUFFIX} OPTIONAL)
+endif ()
