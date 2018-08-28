@@ -34,3 +34,7 @@ endif ()
 if (CPPKCS11_ENABLE_TESTING)
     add_subdirectory(test)
 endif ()
+
+# Install native PKCS11 header
+file(GLOB_RECURSE NATIVE_PKCS_INCLUDEF_FILES ${CMAKE_CURRENT_SOURCE_DIR}/native_header/ "*.h")
+install(FILES ${NATIVE_PKCS_INCLUDEF_FILES} DESTINATION include/cppkcs11)

@@ -21,14 +21,14 @@ add_library(cppkcs11 SHARED ${CPPKCS11_SRCS} ${CPPKCS11_HEADERS})
 target_include_directories(cppkcs11 PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/..
         ${CPPKCS11_NATIVE_PKCS_HEADER})
-
 if(UNIX)
     target_link_libraries(cppkcs11 PUBLIC dl)
 endif()
 
+file(GLOB_RECURSE CPPKCS11_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR} *.hpp *.h)
+install(FILES ${CPPKCS11_INCLUDE} DESTINATION include/cppkcs11)
 
 # LIB_SUFFIX is a variable configured for Windows build of LibLogicalAccess
-install(FILES ${INCLUDE} DESTINATION include/cppkcs11)
 install(TARGETS cppkcs11 RUNTIME DESTINATION bin/${LIB_SUFFIX} ARCHIVE DESTINATION lib/${LIB_SUFFIX} LIBRARY DESTINATION lib/${LIB_SUFFIX})
 if (MSVC)
     install(FILES $<TARGET_PDB_FILE:${PROJECT_NAME}> DESTINATION pdb/${LIB_SUFFIX} OPTIONAL)
