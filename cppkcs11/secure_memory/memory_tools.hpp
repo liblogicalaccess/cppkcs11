@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "cppkcs11/cppkcs11_export.h"
 
 namespace cppkcs
 {
@@ -65,7 +66,7 @@ size_t get_page_size();
  *   to the system page size. We then lock the range starting from that pointer
  *   to (pointer + user size + XXX) that end at a page boundary.
  */
-struct SecureMemoryLockedBuffer
+struct CPPKCS11_EXPORT SecureMemoryLockedBuffer
 {
     /**
      * Construct a secure and locked memory buffer with at least

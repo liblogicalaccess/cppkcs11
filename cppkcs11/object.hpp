@@ -22,7 +22,7 @@ namespace cppkcs
  * Therefore it is the user responsibility that an Object instance
  * does not outlive its owner Session instance.
  */
-class Object
+class CPPKCS11_EXPORT Object
 {
   public:
     explicit Object(Session &session, CK_OBJECT_HANDLE handle);

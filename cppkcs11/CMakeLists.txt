@@ -1,5 +1,5 @@
 set(CPPKCS11_HEADERS "")
-
+include(GenerateExportHeader)
 set(CPPKCS11_SRCS
         ${CMAKE_CURRENT_SOURCE_DIR}/c_api.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/cppkcs11.cpp
@@ -18,6 +18,9 @@ set(CPPKCS11_SRCS
 
 add_library(cppkcs11 SHARED ${CPPKCS11_SRCS} ${CPPKCS11_HEADERS})
 
+generate_export_header(cppkcs11
+        EXPORT_FILE_NAME "${CMAKE_CURRENT_SOURCE_DIR}/cppkcs11_export.h")
+		
 target_include_directories(cppkcs11 PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/..
         ${CPPKCS11_NATIVE_PKCS_HEADER})

@@ -12,7 +12,7 @@ namespace cppkcs
  * on destruction.
  */
 template <typename T, size_t ArraySize>
-class SecureArray
+class CPPKCS11_EXPORT SecureArray
 {
   public:
     ~SecureArray()

@@ -10,7 +10,7 @@ namespace cppkcs
  * Provide an easy to use API to perform cryptographic operation
  * using PKCS11 API.
  */
-class CryptoService
+class CPPKCS11_EXPORT CryptoService
 {
   public:
     explicit CryptoService(Session &session);

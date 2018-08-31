@@ -16,7 +16,7 @@ namespace cppkcs
  * was used to construct the ObjectService instance,
  * otherwise it will result in dangling references.
  */
-class ObjectService
+class CPPKCS11_EXPORT ObjectService
 {
   public:
     /**

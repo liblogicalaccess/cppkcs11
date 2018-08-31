@@ -5,6 +5,7 @@
 #include "cppkcs11/pkcsexceptions.hpp"
 #include "cppkcs11/secure_memory/secure_string.hpp"
 #include "cppkcs11/session.hpp"
+#include "cppkcs11/cppkcs11_export.h"
 #include <map>
 #include <vector>
 
@@ -29,20 +30,20 @@ extern std::map<size_t, std::string> pkcs_error_code_to_string;
  *
  * This must be called once BEFORE calling initialize()
  */
-void load_pkcs(const std::string &pkcs_shared_object_path);
+void CPPKCS11_EXPORT load_pkcs(const std::string &pkcs_shared_object_path);
 
 /**
  * Load the underlying PKCS library. This uses the CPPKCS11_UNDERLYING_LIBRARY
  * environment variable for the path to the PKCS shared object.
  */
-void load_pkcs();
+void CPPKCS11_EXPORT load_pkcs();
 
 /**
  * Wraps C_Initialize()
  */
-void initialize();
+void CPPKCS11_EXPORT initialize();
 
-void finalize();
+void CPPKCS11_EXPORT finalize();
 
 std::vector<CK_SLOT_ID> get_slot_list(bool token_present);
 
@@ -56,7 +57,7 @@ CK_TOKEN_INFO get_token_info(CK_SLOT_ID slot_id);
  * The CKF_SERIAL_SESSION flags is added to the flags provided
  * by the caller.
  */
-Session open_session(CK_SLOT_ID slot_id, CK_FLAGS flags);
+Session CPPKCS11_EXPORT open_session(CK_SLOT_ID slot_id, CK_FLAGS flags);
 
 /**
  * Close a session with a given handle.
@@ -65,7 +66,7 @@ Session open_session(CK_SLOT_ID slot_id, CK_FLAGS flags);
  * It will be called automatically when a Session object goes
  * out of scope.
  */
-void close_session(CK_SESSION_HANDLE session_handle);
+void CPPKCS11_EXPORT close_session(CK_SESSION_HANDLE session_handle);
 
 /**
  * Ensure that there is no error (based on the CK_RV errcode param).

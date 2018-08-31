@@ -19,7 +19,7 @@ namespace cppkcs
  * Note that Trustway Proteccio (ATOS / BULL) does not
  * support notifications (pApplication & Notify parameter).
  */
-class Session
+class CPPKCS11_EXPORT Session
 {
   public:
     /**

@@ -20,7 +20,7 @@ namespace cppkcs
  * It is important that the session outlives the service and any object
  * that may be created by the service.
  */
-class KeyService
+class CPPKCS11_EXPORT KeyService
 {
   public:
     explicit KeyService(Session &os);

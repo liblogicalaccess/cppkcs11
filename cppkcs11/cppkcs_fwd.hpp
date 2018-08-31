@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <vector>
+#include "cppkcs11/cppkcs11_export.h"
 
 namespace cppkcs
 {

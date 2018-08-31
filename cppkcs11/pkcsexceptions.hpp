@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cppkcs11/native_pkcs.hpp"
+#include "cppkcs11/cppkcs11_export.h"
 #include <stdexcept>
 #include <string>
 
@@ -10,7 +11,7 @@ namespace cppkcs
 /**
  * Base class for PKCS related exception raised by the library.
  */
-class PKCSException : public std::runtime_error
+class CPPKCS11_EXPORT PKCSException : public std::runtime_error
 {
   public:
     explicit PKCSException(CK_RV errcode, const std::string &what);
@@ -25,7 +26,7 @@ class PKCSException : public std::runtime_error
 /**
  * Exception raised when retrieve slot / token information fails.
  */
-class GetInfoException : public PKCSException
+class CPPKCS11_EXPORT GetInfoException : public PKCSException
 {
   public:
     /**
@@ -46,7 +47,7 @@ class GetInfoException : public PKCSException
  * attribute
  * is -1, indicating an issue.
  */
-class AttributeException : public PKCSException
+class CPPKCS11_EXPORT AttributeException : public PKCSException
 {
   public:
     explicit AttributeException(CK_RV errcode, const std::string &what);

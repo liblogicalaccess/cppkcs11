@@ -14,7 +14,7 @@ namespace cppkcs
  * The SecureString relies on the SecureMemoryLockedBuffer to
  * provide storage.
 */
-class SecureString
+class CPPKCS11_EXPORT SecureString
 {
   public:
     /**
