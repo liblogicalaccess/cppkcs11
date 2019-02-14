@@ -1,3 +1,5 @@
+@Library("islog-helper") _
+
 pipeline {
     agent none
 
@@ -9,6 +11,10 @@ pipeline {
         gitlab(triggerOnPush: true,
                 triggerOnMergeRequest: true,
                 branchFilterType: 'All')
+    }
+
+    environment {
+        PACKAGE_NAME = "cppkcs11/1.0@islog/master"
     }
 
     stages {
@@ -30,6 +36,43 @@ pipeline {
                              'CPPKCS11_UNITTEST_PIN=titi',
                              'SOFTHSM2_CONF=/tmp/softhsm.cfg']) {
                         sh "cd build && ctest"
+                    }
+                }
+            }
+        }
+
+        stage('Build Conan Package') {
+            // Build packages for various configuration we use at Islog.
+            parallel {
+                stage('Linux 64 Release') {
+                    agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support:latest' } }
+                    steps {
+                        script {
+                            conan.installIslogProfiles("$HOME/.conan")
+                            sh "conan create -p compilers/x64_gcc6_release . ${PACKAGE_NAME}"
+                            sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
+                        }
+                    }
+                }
+                stage('Linux 64 Debug') {
+                    agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support:latest' } }
+                    steps {
+                        script {
+                            conan.installIslogProfiles("$HOME/.conan")
+                            sh "conan create -p compilers/x64_gcc6_debug . ${PACKAGE_NAME}"
+                            sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
+                        }
+                    }
+                }
+                stage('Windows 64 Release') {
+                    agent { label 'cis-win2016' }
+                    steps {
+                        script {
+                            conan.withFreshWindowsConanCache {
+                                bat "conan create -p compilers/x64_msvc_release . ${PACKAGE_NAME}"
+                                bat "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
+                            }
+                        }
                     }
                 }
             }

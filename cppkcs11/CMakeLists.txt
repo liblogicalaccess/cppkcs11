@@ -28,8 +28,18 @@ if(UNIX)
     target_link_libraries(cppkcs11 PUBLIC dl)
 endif()
 
-file(GLOB_RECURSE CPPKCS11_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR} *.hpp *.h)
+# Install header files
+file(GLOB CPPKCS11_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/ *.hpp *.h)
 install(FILES ${CPPKCS11_INCLUDE} DESTINATION include/cppkcs11)
+unset(CPPKCS11_INCLUDE)
+
+file(GLOB CPPKCS11_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/secure_memory/*.hpp)
+install(FILES ${CPPKCS11_INCLUDE} DESTINATION include/cppkcs11/secure_memory)
+unset(CPPKCS11_INCLUDE)
+
+file(GLOB CPPKCS11_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/services/*.hpp)
+install(FILES ${CPPKCS11_INCLUDE} DESTINATION include/cppkcs11/services)
+unset(CPPKCS11_INCLUDE)
 
 # LIB_SUFFIX is a variable configured for Windows build of LibLogicalAccess
 install(TARGETS cppkcs11 RUNTIME DESTINATION bin/${LIB_SUFFIX} ARCHIVE DESTINATION lib/${LIB_SUFFIX} LIBRARY DESTINATION lib/${LIB_SUFFIX})
