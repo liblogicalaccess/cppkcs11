@@ -75,6 +75,39 @@ pipeline {
                         }
                     }
                 }
+                stage('Windows 64 Debug') {
+                    agent { label 'cis-win2016' }
+                    steps {
+                        script {
+                            conan.withFreshWindowsConanCache {
+                                bat "conan create -p compilers/x64_msvc_debug . ${PACKAGE_NAME}"
+                                bat "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
+                            }
+                        }
+                    }
+                }
+                stage('Windows 32 Release') {
+                    agent { label 'cis-win2016' }
+                    steps {
+                        script {
+                            conan.withFreshWindowsConanCache {
+                                bat "conan create -p compilers/x86_msvc_release . ${PACKAGE_NAME}"
+                                bat "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
+                            }
+                        }
+                    }
+                }
+                stage('Windows 32 Debug') {
+                    agent { label 'cis-win2016' }
+                    steps {
+                        script {
+                            conan.withFreshWindowsConanCache {
+                                bat "conan create -p compilers/x86_msvc_debug . ${PACKAGE_NAME}"
+                                bat "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
+                            }
+                        }
+                    }
+                }
             }
         }
     }
