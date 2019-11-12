@@ -25,8 +25,9 @@ int cppkcs_generate_aes128(const char *pkcs_password, size_t hsm_slot,
         }
         return 0;
     }
-    catch (const std::exception &)
+    catch (const std::exception &e)
     {
+        std::cerr << "cppkcs_generate_aes128 failed: " << e.what() << std::endl;
         return -1;
     }
 }
@@ -47,7 +48,7 @@ int cppkcs_has_object_with_label(const char *pkcs_password, size_t hsm_slot,
     }
     catch (const std::exception &e)
     {
-        std::cerr << "Something went wrong: " << e.what() << std::endl;
+        std::cerr << "cppkcs_has_object_with_label failed: " << e.what() << std::endl;
         return -1;
     }
 }
@@ -80,8 +81,9 @@ int cppkcs_dump_key_value(const char *pkcs_password, size_t hsm_slot,
         }
         return 0;
     }
-    catch (const std::exception &)
+    catch (const std::exception &e)
     {
+        std::cerr << "cppkcs_dump_key_value failed: " << e.what() << std::endl;
         return -1;
     }
 }
@@ -96,8 +98,9 @@ int cppkcs_load_pkcs(const char *pkcs_library_path)
             cppkcs::load_pkcs();
         return 0;
     }
-    catch (const std::exception &)
+    catch (const std::exception &e)
     {
+        std::cerr << "cppkcs_load_pkcs failed: " << e.what() << std::endl;
         return -1;
     }
 }
@@ -109,8 +112,9 @@ int cppkcs_initialize()
         cppkcs::initialize();
         return 0;
     }
-    catch (const std::exception &)
+    catch (const std::exception &e)
     {
+        std::cerr << "cppkcs_initialize failed: " << e.what() << std::endl;
         return -1;
     }
 }
@@ -122,8 +126,9 @@ int cppkcs_finalize()
         cppkcs::finalize();
         return 0;
     }
-    catch (const std::exception &)
+    catch (const std::exception &e)
     {
+        std::cerr << "cppkcs_finalize failed: " << e.what() << std::endl;
         return -1;
     }
 }
