@@ -14,7 +14,7 @@ pipeline {
     }
 
     environment {
-        PACKAGE_NAME = "cppkcs11/1.0@islog/master"
+        PACKAGE_NAME = "cppkcs11/1.1@islog/master"
     }
 
     stages {

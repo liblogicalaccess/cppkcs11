@@ -2,7 +2,7 @@ from conans import ConanFile, CMake, tools
 
 class CPPKCS11Conan(ConanFile):
     name = "cppkcs11"
-    version = "1.0"
+    version = "1.1"
     license = ""
     url = "https://github.com/islog/liblogicalaccess"
     description = "C++ PKCS11 Wrapper"
@@ -10,8 +10,12 @@ class CPPKCS11Conan(ConanFile):
     generators = "cmake"
     exports_sources = "*"
 
+    def build_requirements(self):
+        self.build_requires('gtest/1.8.1@bincrafters/stable')
+
     def configure_cmake(self):
         cmake = CMake(self, build_type=self.settings.build_type)
+        cmake.definitions['CPPKCS11_ENABLE_TESTING'] = True
         cmake.configure()
         return cmake
 

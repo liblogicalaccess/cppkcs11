@@ -117,8 +117,7 @@ void SecureMemoryLockedBuffer::allocate_raw(size_t user_buffer_size)
     const auto page_size = static_cast<size_t>(get_page_size());
 
     // We want a raw buffer of size: page_size + buffer_size + XXX == multiple of
-    // page
-    // size. This will make sure we can align to page_size and end the user buffer
+    // page size. This will make sure we can align to page_size and end the user buffer
     // on a page boundary.
     raw_allocated_size_ = page_size + user_buffer_size;
     // How many bytes to reach next page boundary.

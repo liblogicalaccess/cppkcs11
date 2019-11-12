@@ -18,6 +18,8 @@ set(CPPKCS11_SRCS
 
 add_library(cppkcs11 SHARED ${CPPKCS11_SRCS} ${CPPKCS11_HEADERS})
 
+set(MY_DEBUG_OPTIONS -W -Wall -g)
+target_compile_options(cppkcs11 PUBLIC "$<$<CONFIG:DEBUG>:${MY_DEBUG_OPTIONS}>")
 generate_export_header(cppkcs11
         EXPORT_FILE_NAME "${CMAKE_CURRENT_SOURCE_DIR}/cppkcs11_export.h")
 		
