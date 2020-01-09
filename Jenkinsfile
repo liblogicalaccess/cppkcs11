@@ -44,7 +44,7 @@ pipeline {
         stage('Build Conan Package') {
             // Build packages for various configuration we use at Islog.
             parallel {
-                stage('Linux 64 Release') {
+                stage('Linux 64 Release GCC 6') {
                     agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support:latest' } }
                     steps {
                         script {
@@ -54,7 +54,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Linux 64 Debug') {
+                stage('Linux 64 Debug GCC 6') {
                     agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support:latest' } }
                     steps {
                         script {
@@ -64,6 +64,27 @@ pipeline {
                         }
                     }
                 }
+               stage('Linux 64 Release GCC 8') {
+                    agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support-buster:latest' } }
+                    steps {
+                        script {
+                            conan.installIslogProfiles("$HOME/.conan")
+                            sh "conan create -p compilers/x64_gcc8_release . ${PACKAGE_NAME}"
+                            sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
+                        }
+                    }
+                }
+                stage('Linux 64 Debug GCC 8') {
+                    agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support-buster:latest' } }
+                    steps {
+                        script {
+                            conan.installIslogProfiles("$HOME/.conan")
+                            sh "conan create -p compilers/x64_gcc8_debug . ${PACKAGE_NAME}"
+                            sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
+                        }
+                    }
+                }
+
                 stage('Windows 64 Release') {
                     agent { label 'cis-win2016' }
                     steps {
