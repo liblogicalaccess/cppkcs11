@@ -19,15 +19,11 @@ pipeline {
 
     stages {
         stage('Docker build') {
-            agent {
-                dockerfile {
-                    filename 'Dockerfile'
-                }
-            }
+        agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support-buster:latest' } }
             steps {
                 sh 'mkdir build'
-                sh 'cd build && cmake -DCPPKCS11_ENABLE_TESTING=1 ..'
-                sh 'cd build && make -j4'
+                sh 'cd build && conan install ..'
+                sh 'cd build && conan build ..'
                 script {
                     tokenSlot = initSoftHSM()
                     echo "Token slot to use: ${tokenSlot}"
