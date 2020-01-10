@@ -24,6 +24,17 @@ class TestHelper : public ::testing::Test
         return cppkcs::SecureString(pin);
     }
 
+    const char *get_hsm_pin_cstr()
+    {
+        const char *pin = getenv("CPPKCS11_UNITTEST_PIN");
+        if (pin == nullptr)
+        {
+            std::cerr << "No PIN configured in CPPKCS11_UNITTEST_PIN" << std::endl;
+            exit(-1);
+        }
+        return pin;
+    }
+
     size_t get_hsm_slot()
     {
         const char *slot = getenv("CPPKCS11_UNITTEST_TOKEN_SLOT");
