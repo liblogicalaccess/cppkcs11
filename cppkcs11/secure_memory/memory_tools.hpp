@@ -13,13 +13,13 @@ namespace cppkcs
 /**
  * To avoid memset() removal by the compiler.
  */
-void secure_bzero(void *ptr, size_t size);
+void CPPKCS11_EXPORT secure_bzero(void *ptr, size_t size);
 
 /**
  * Securely bzero a std::string.
  * @param str
  */
-void secure_bzero(std::string &str);
+void CPPKCS11_EXPORT secure_bzero(std::string &str);
 
 /**
  * Lock the memory, preventing the pages in the address range
@@ -29,7 +29,7 @@ void secure_bzero(std::string &str);
  *
  * Attempting to lock nullptr / range of size 0 is a fatal error.
  */
-void lock_memory(const void *addr, size_t len);
+void CPPKCS11_EXPORT lock_memory(const void *addr, size_t len);
 
 /**
  * Unlock memory previously locked by lock_memory().
@@ -38,12 +38,12 @@ void lock_memory(const void *addr, size_t len);
  *
  * Attempting to unlock nullptr / range of size 0 is a noop.
  */
-void unlock_memory(const void *addr, size_t len);
+void CPPKCS11_EXPORT unlock_memory(const void *addr, size_t len);
 
 /**
  * Portable function to retrieve the underlying OS page size.
  */
-size_t get_page_size();
+size_t CPPKCS11_EXPORT get_page_size();
 
 /**
  * The SecureMemoryLockedBuffer is an abstraction providing a memory buffer
