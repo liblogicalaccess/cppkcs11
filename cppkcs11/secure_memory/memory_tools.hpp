@@ -102,7 +102,7 @@ struct CPPKCS11_EXPORT SecureMemoryLockedBuffer
     size_t raw_allocated_size_{0};
 
     // The raw pointer returned by malloc()
-    std::unique_ptr<uint8_t> raw_allocated_ptr_{nullptr};
+    std::unique_ptr<uint8_t, decltype(&std::free)> raw_allocated_ptr_{nullptr, std::free};
 
     // The size of the locked region.
     size_t locked_size_{0};
