@@ -64,7 +64,6 @@ pipeline {
                     agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support-buster:latest' } }
                     steps {
                         script {
-                            conan.installIslogProfiles("$HOME/.conan")
                             sh "conan create -p compilers/x64_gcc8_release . ${PACKAGE_NAME}"
                             sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                         }
@@ -74,7 +73,6 @@ pipeline {
                     agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support-buster:latest' } }
                     steps {
                         script {
-                            conan.installIslogProfiles("$HOME/.conan")
                             sh "conan create -p compilers/x64_gcc8_debug . ${PACKAGE_NAME}"
                             sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                         }
