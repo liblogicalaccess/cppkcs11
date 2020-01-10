@@ -80,7 +80,7 @@ pipeline {
                 }
 
                 stage('Windows 64 Release') {
-                    agent { label 'cis-win2016' }
+                    agent { label 'win2016' }
                     steps {
                         script {
                             conan.withFreshWindowsConanCache {
@@ -91,7 +91,7 @@ pipeline {
                     }
                 }
                 stage('Windows 64 Debug') {
-                    agent { label 'cis-win2016' }
+                    agent { label 'win2016' }
                     steps {
                         script {
                             conan.withFreshWindowsConanCache {
@@ -102,7 +102,7 @@ pipeline {
                     }
                 }
                 stage('Windows 32 Release') {
-                    agent { label 'cis-win2016' }
+                    agent { label 'win2016' }
                     steps {
                         script {
                             conan.withFreshWindowsConanCache {
@@ -113,7 +113,7 @@ pipeline {
                     }
                 }
                 stage('Windows 32 Debug') {
-                    agent { label 'cis-win2016' }
+                    agent { label 'win2016' }
                     steps {
                         script {
                             conan.withFreshWindowsConanCache {
