@@ -28,6 +28,7 @@ TEST_F(CAPITest, generate_key)
 
     ASSERT_EQ(0, cppkcs_has_object_with_label((const char *)get_hsm_pin().data(),
                                               get_hsm_slot(), "MY_KEY_LABEL"));
+    std::cerr << "Pin: {" << (const char *)get_hsm_pin().data() << "}" << std::endl;
     ASSERT_EQ(0, cppkcs_generate_aes128((const char *)get_hsm_pin().data(),
                                         get_hsm_slot(), "MY_KEY_LABEL", buffer));
     size_t value = 0;
