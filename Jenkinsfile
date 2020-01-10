@@ -31,7 +31,6 @@ pipeline {
                              "CPPKCS11_UNITTEST_TOKEN_SLOT=${tokenSlot}",
                              'CPPKCS11_UNITTEST_PIN=titi',
                              'SOFTHSM2_CONF=/tmp/softhsm.cfg']) {
-                        sh "cd build && ./bin/test_c_api"
                         sh "cd build && ctest"
                     }
                 }
