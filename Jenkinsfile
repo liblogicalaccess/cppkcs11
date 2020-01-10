@@ -14,6 +14,8 @@ pipeline {
     }
 
     environment {
+        // Fix MSBuild issue for Windows builds.
+        MSBUILDDISABLENODEREUSE = 1
         PACKAGE_NAME = "cppkcs11/1.1@islog/master"
     }
 
