@@ -11,7 +11,7 @@ class CPPKCS11Conan(ConanFile):
     exports_sources = "*"
 
     def build_requirements(self):
-        self.build_requires('gtest/1.8.1@bincrafters/stable')
+        self.build_requires('gtest/1.11.0')
 
     def configure_cmake(self):
         cmake = CMake(self, build_type=self.settings.build_type)
