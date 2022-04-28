@@ -16,12 +16,12 @@ pipeline {
     environment {
         // Fix MSBuild issue for Windows builds.
         MSBUILDDISABLENODEREUSE = 1
-        PACKAGE_NAME = "cppkcs11/1.1@islog/master"
+        PACKAGE_NAME = "cppkcs11/1.1"
     }
 
     stages {
         stage('Docker build') {
-        agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support-buster:latest' } }
+        agent { docker { image 'artifacts.linq.hidglobal.com:5000/debian_build:latest' } }
             steps {
                 sh 'mkdir build'
                 sh 'cd build && conan install ..'
@@ -42,40 +42,22 @@ pipeline {
         stage('Build Conan Package') {
             // Build packages for various configuration we use at Islog.
             parallel {
-                stage('Linux 64 Release GCC 6') {
-                    agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support:latest' } }
+                stage('Linux 64 Release GCC 10') {
+                    agent { docker { image 'artifacts.linq.hidglobal.com:5000/debian_build:latest' } }
                     steps {
                         script {
                             conan.installIslogProfiles("$HOME/.conan")
-                            sh "conan create -p compilers/x64_gcc6_release . ${PACKAGE_NAME}"
+                            sh "conan create -p compilers/x64_gcc10_release . ${PACKAGE_NAME}"
                             sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                         }
                     }
                 }
-                stage('Linux 64 Debug GCC 6') {
-                    agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support:latest' } }
+                stage('Linux 64 Debug GCC 10') {
+                    agent { docker { image 'artifacts.linq.hidglobal.com:5000/debian_build:latest' } }
                     steps {
                         script {
                             conan.installIslogProfiles("$HOME/.conan")
-                            sh "conan create -p compilers/x64_gcc6_debug . ${PACKAGE_NAME}"
-                            sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
-                        }
-                    }
-                }
-               stage('Linux 64 Release GCC 8') {
-                    agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support-buster:latest' } }
-                    steps {
-                        script {
-                            sh "conan create -p compilers/x64_gcc8_release . ${PACKAGE_NAME}"
-                            sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
-                        }
-                    }
-                }
-                stage('Linux 64 Debug GCC 8') {
-                    agent { docker { image 'docker-registry.islog.com:5000/conan-recipes-support-buster:latest' } }
-                    steps {
-                        script {
-                            sh "conan create -p compilers/x64_gcc8_debug . ${PACKAGE_NAME}"
+                            sh "conan create -p compilers/x64_gcc10_debug . ${PACKAGE_NAME}"
                             sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                         }
                     }
@@ -92,6 +74,7 @@ pipeline {
                         }
                     }
                 }
+
                 stage('Windows 64 Debug') {
                     agent { label 'win2016' }
                     steps {
@@ -103,6 +86,7 @@ pipeline {
                         }
                     }
                 }
+
                 stage('Windows 32 Release') {
                     agent { label 'win2016' }
                     steps {
@@ -114,6 +98,7 @@ pipeline {
                         }
                     }
                 }
+
                 stage('Windows 32 Debug') {
                     agent { label 'win2016' }
                     steps {
