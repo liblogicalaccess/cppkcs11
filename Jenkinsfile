@@ -21,7 +21,12 @@ pipeline {
 
     stages {
         stage('Docker build') {
-        agent { docker { image 'artifacts.linq.hidglobal.com:5000/debian_build:latest' } }
+            agent {
+                docker {
+                    alwaysPull true
+                    image 'artifacts.linq.hidglobal.com:5000/debian_build:latest'
+                }
+            }
             steps {
                 sh 'mkdir build'
                 sh 'cd build && conan install ..'
