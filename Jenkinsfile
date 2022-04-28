@@ -134,7 +134,7 @@ slots.removable = false
         sh 'mv softhsm.cfg /tmp'
         sh 'cat /tmp/softhsm.cfg'
         withEnv(['SOFTHSM2_CONF=/tmp/softhsm.cfg']) {
-            output = sh(script: 'softhsm2-util --init-token --label "Toto" --pin "titi" --so-pin "tata" --slot 0',
+            output = sh(script: '/usr/bin/softhsm2-util --init-token --label "Toto" --pin "titi" --so-pin "tata" --slot 0',
                     returnStdout: true)
             // Sample output: "The token has been initialized and is reassigned to slot 68347983"
             String[] parsed
