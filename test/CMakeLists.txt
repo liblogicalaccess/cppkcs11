@@ -4,7 +4,7 @@ find_package(GTest REQUIRED)
 ### the PROTECCIO_CONF_DIR environment variable explicitely.
 
 #set(GTEST_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/googletest/googletest/include)
-
+include(GoogleTest)
 function(create_and_add_test TEST_NAME)
     add_executable(${TEST_NAME} ${TEST_NAME}.cpp)
 	set_target_properties(${TEST_NAME} PROPERTIES CXX_STANDARD 14)

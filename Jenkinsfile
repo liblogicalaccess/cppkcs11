@@ -52,7 +52,7 @@ pipeline {
                     steps {
                         script {
                             conan.installIslogProfiles("$HOME/.conan")
-                            sh "conan create -profile compilers/x64_gcc10_release . ${PACKAGE_NAME}"
+                            sh "conan create -pr compilers/x64_gcc10_release . ${PACKAGE_NAME}"
                             sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                         }
                     }

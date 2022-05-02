@@ -7,7 +7,7 @@ class CPPKCS11Conan(ConanFile):
     url = "https://github.com/islog/liblogicalaccess"
     description = "C++ PKCS11 Wrapper"
     settings = "os", "compiler", "build_type", "arch"
-    generators = "cmake"
+    generators = "cmake", "cmake_find_package"
     exports_sources = "*"
 
     def build_requirements(self):
