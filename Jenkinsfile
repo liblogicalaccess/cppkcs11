@@ -52,7 +52,7 @@ pipeline {
                     steps {
                         script {
                             conan.installIslogProfiles("$HOME/.conan")
-                            sh "conan create -pr compilers/x64_gcc10_release . ${PACKAGE_NAME}"
+                            sh "conan create -pr compilers/x64_gcc10_release ."
                             sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                         }
                     }
@@ -62,7 +62,7 @@ pipeline {
                     steps {
                         script {
                             conan.installIslogProfiles("$HOME/.conan")
-                            sh "conan create -pr compilers/x64_gcc10_debug . ${PACKAGE_NAME}"
+                            sh "conan create -pr compilers/x64_gcc10_debug ."
                             sh "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                         }
                     }
@@ -73,7 +73,7 @@ pipeline {
                     steps {
                         script {
                             conan.withFreshWindowsConanCache {
-                                bat "conan create -pr compilers/x64_msvc_release . ${PACKAGE_NAME}"
+                                bat "conan create -pr compilers/x64_msvc_release ."
                                 bat "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                             }
                         }
@@ -85,7 +85,7 @@ pipeline {
                     steps {
                         script {
                             conan.withFreshWindowsConanCache {
-                                bat "conan create -pr compilers/x64_msvc_debug . ${PACKAGE_NAME}"
+                                bat "conan create -pr compilers/x64_msvc_debug ."
                                 bat "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                             }
                         }
@@ -97,7 +97,7 @@ pipeline {
                     steps {
                         script {
                             conan.withFreshWindowsConanCache {
-                                bat "conan create -pr compilers/x86_msvc_release . ${PACKAGE_NAME}"
+                                bat "conan create -pr compilers/x86_msvc_release ."
                                 bat "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                             }
                         }
@@ -109,7 +109,7 @@ pipeline {
                     steps {
                         script {
                             conan.withFreshWindowsConanCache {
-                                bat "conan create -pr compilers/x86_msvc_debug . ${PACKAGE_NAME}"
+                                bat "conan create -pr compilers/x86_msvc_debug ."
                                 bat "conan upload ${PACKAGE_NAME} -r islog-test --all --confirm --check --force"
                             }
                         }
