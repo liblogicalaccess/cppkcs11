@@ -2,7 +2,7 @@ from conans import ConanFile, CMake, tools
 
 class CPPKCS11Conan(ConanFile):
     name = "cppkcs11"
-    version = "1.1"
+    version = "1.2"
     license = ""
     url = "https://github.com/islog/liblogicalaccess"
     description = "C++ PKCS11 Wrapper"
@@ -11,7 +11,7 @@ class CPPKCS11Conan(ConanFile):
     exports_sources = "*"
 
     def build_requirements(self):
-        self.build_requires('gtest/1.11.0')
+        self.build_requires('gtest/1.15.0')
 
     def configure_cmake(self):
         cmake = CMake(self, build_type=self.settings.build_type)
