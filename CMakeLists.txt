@@ -2,17 +2,13 @@
 cmake_minimum_required(VERSION 3.7)
 project(atosnethsm)
 
-set(CPPKCS11_ENABLE_TESTING FALSE CACHE BOOL "Build unittest for CPPKCS11")
 set(CPPKCS11_ENABLE_SAMPLE FALSE CACHE BOOL "Build the sample application")
 set(CPPKCS11_NATIVE_PKCS_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/native_header" CACHE STRING "Path to native PKCS11 header")
 
-if (CPPKCS11_ENABLE_TESTING)
+if (NOT BUILD_TESTING STREQUAL OFF)
     find_package(GTest)
     enable_testing()
 endif ()
-
-include(${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup(TARGETS)
 
 set(CMAKE_CXX_STANDARD 14)
 if (UNIX)
@@ -33,7 +29,7 @@ if (CPPKCS11_ENABLE_SAMPLE)
     target_include_directories(atosnethsm PUBLIC ${CPPKCS11_NATIVE_PKCS_HEADER})
 endif ()
 
-if (CPPKCS11_ENABLE_TESTING)
+if (NOT BUILD_TESTING STREQUAL OFF)
     add_subdirectory(test)
 endif ()
 

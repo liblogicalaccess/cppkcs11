@@ -1,4 +1,4 @@
-find_package(GTest REQUIRED)
+find_package(GTest REQUIRED CONFIG)
 
 ### Note that test should be running while providing
 ### the PROTECCIO_CONF_DIR environment variable explicitely.
@@ -10,9 +10,9 @@ function(create_and_add_test TEST_NAME)
 	set_target_properties(${TEST_NAME} PROPERTIES CXX_STANDARD 14)
     target_include_directories(${TEST_NAME}  PUBLIC ${GTEST_INCLUDE_DIRS})
 	if (UNIX)
-		target_link_libraries(${TEST_NAME} CONAN_PKG::gtest pthread cppkcs11)
+		target_link_libraries(${TEST_NAME} gtest::gtest pthread cppkcs11)
 	else()
-		target_link_libraries(${TEST_NAME} CONAN_PKG::gtest cppkcs11)
+		target_link_libraries(${TEST_NAME} gtest::gtest cppkcs11)
 	endif()
     GTEST_ADD_TESTS(${TEST_NAME} "" ${TEST_NAME}.cpp)
 endfunction()

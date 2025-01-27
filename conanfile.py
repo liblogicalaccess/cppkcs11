@@ -1,30 +1,35 @@
-from conans import ConanFile, CMake, tools
+from conan import ConanFile
+from conan.tools.cmake import CMakeToolchain, CMakeDeps, CMake, cmake_layout
 
 class CPPKCS11Conan(ConanFile):
     name = "cppkcs11"
     version = "1.2"
     license = ""
-    url = "https://github.com/islog/liblogicalaccess"
+    url = "https://github.com/liblogicalaccess/liblogicalaccess"
     description = "C++ PKCS11 Wrapper"
     settings = "os", "compiler", "build_type", "arch"
-    generators = "cmake", "cmake_find_package"
     exports_sources = "*"
 
     def build_requirements(self):
-        self.build_requires('gtest/1.15.0')
-
-    def configure_cmake(self):
-        cmake = CMake(self, build_type=self.settings.build_type)
-        cmake.definitions['CPPKCS11_ENABLE_TESTING'] = True
-        cmake.configure()
-        return cmake
+        self.test_requires('gtest/1.15.0')
+        
+    def layout(self):
+        cmake_layout(self)
+    
+    def generate(self):
+        tc = CMakeToolchain(self)
+        tc.generate()
+        
+        deps = CMakeDeps(self)
+        deps.generate()     
 
     def build(self):
-        cmake = self.configure_cmake()
+        cmake = CMake(self)
+        cmake.configure()
         cmake.build()
 
     def package(self):
-        cmake = self.configure_cmake()
+        cmake = CMake(self)
         cmake.install()
 
     def package_info(self):
