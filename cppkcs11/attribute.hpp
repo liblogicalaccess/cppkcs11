@@ -4,6 +4,7 @@
 #include "cppkcs11/secure_memory/secure_string.hpp"
 #include <array>
 #include <cassert>
+#include <cstdint>
 #include <functional>
 #include <type_traits>
 #include <vector>

@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.10)
 set(CPPKCS11_HEADERS "")
 include(GenerateExportHeader)
 set(CPPKCS11_SRCS

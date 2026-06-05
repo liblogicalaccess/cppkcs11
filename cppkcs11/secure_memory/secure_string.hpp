@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cppkcs11/secure_memory/memory_tools.hpp"
+#include <cstdint>
 #include <iostream>
 #include <memory>
 #include <string>

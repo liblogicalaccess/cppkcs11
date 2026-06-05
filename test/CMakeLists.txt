@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.10)
 find_package(GTest REQUIRED CONFIG)
 
 ### Note that test should be running while providing

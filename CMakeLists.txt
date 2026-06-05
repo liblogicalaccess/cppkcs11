@@ -1,5 +1,4 @@
-#$cmake_minimum_required(VERSION 3.10)
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.10)
 project(atosnethsm)
 
 set(CPPKCS11_ENABLE_SAMPLE FALSE CACHE BOOL "Build the sample application")
